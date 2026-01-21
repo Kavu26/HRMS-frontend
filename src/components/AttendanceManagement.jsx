@@ -196,7 +196,7 @@ const AttendanceManagement = () => {
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginBottom: '1.5rem' }} className="filter-container">
           {employees.length > 0 && (
             <div className="form-group" style={{ marginBottom: 0 }}>
               <label className="form-label">Filter by Employee</label>
@@ -234,7 +234,7 @@ const AttendanceManagement = () => {
               Use Date Range
             </label>
             {!useDateRange ? (
-              <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', gap: '0.5rem' }} className="date-filter-row">
                 <input
                   type="date"
                   className="form-input"
@@ -255,7 +255,7 @@ const AttendanceManagement = () => {
                 )}
               </div>
             ) : (
-              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-end' }}>
+              <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'flex-end' }} className="date-range-row">
                 <div style={{ flex: 1 }}>
                   <label className="form-label" style={{ fontSize: '0.75rem', marginBottom: '0.25rem' }}>From Date</label>
                   <input
@@ -310,19 +310,20 @@ const AttendanceManagement = () => {
             </p>
           </div>
         ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Employee ID</th>
-                <th>Employee Name</th>
-                <th>Department</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAttendance.map((record) => (
+          <div className="table-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Employee ID</th>
+                  <th>Employee Name</th>
+                  <th>Department</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {filteredAttendance.map((record) => (
                 <tr key={record.id}>
                   <td>{formatDate(record.date)}</td>
                   <td>{record.employee_id || record.employee?.employee_id}</td>
@@ -340,7 +341,7 @@ const AttendanceManagement = () => {
                     </span>
                   </td>
                   <td>
-                    <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <div style={{ display: 'flex', gap: '0.5rem' }} className="action-buttons">
                       <button
                         className="btn btn-secondary"
                         onClick={() => handleEdit(record)}
@@ -359,8 +360,9 @@ const AttendanceManagement = () => {
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

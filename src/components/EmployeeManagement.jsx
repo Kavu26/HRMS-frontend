@@ -100,18 +100,19 @@ const EmployeeManagement = () => {
             <p>Get started by adding your first employee</p>
           </div>
         ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Email</th>
-                <th>Department</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {employees.map((employee) => (
+          <div className="table-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Employee ID</th>
+                  <th>Full Name</th>
+                  <th>Email</th>
+                  <th>Department</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {employees.map((employee) => (
                 <tr key={employee.employee_id}>
                   <td>{employee.employee_id}</td>
                   <td>{employee.full_name}</td>
@@ -121,14 +122,16 @@ const EmployeeManagement = () => {
                     <button
                       className="btn btn-danger"
                       onClick={() => setDeleteConfirm(employee)}
+                      style={{ padding: '0.375rem 0.75rem', fontSize: '0.75rem' }}
                     >
                       Delete
                     </button>
                   </td>
                 </tr>
               ))}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
 

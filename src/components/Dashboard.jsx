@@ -111,34 +111,36 @@ const Dashboard = () => {
             <div className="empty-state-text">No data available</div>
           </div>
         ) : (
-          <table className="table">
-            <thead>
-              <tr>
-                <th>Employee ID</th>
-                <th>Full Name</th>
-                <th>Department</th>
-                <th>Present Days</th>
-                <th>Absent Days</th>
-                <th>Total Records</th>
-              </tr>
-            </thead>
-            <tbody>
-              {stats.employeeStats.map((empStat) => (
-                <tr key={empStat.employee_id}>
-                  <td>{empStat.employee_id}</td>
-                  <td>{empStat.full_name}</td>
-                  <td>{empStat.department}</td>
-                  <td>
-                    <span className="badge badge-present">{empStat.present}</span>
-                  </td>
-                  <td>
-                    <span className="badge badge-absent">{empStat.absent}</span>
-                  </td>
-                  <td>{empStat.total}</td>
+          <div className="table-wrapper">
+            <table className="table">
+              <thead>
+                <tr>
+                  <th>Employee ID</th>
+                  <th>Full Name</th>
+                  <th>Department</th>
+                  <th>Present Days</th>
+                  <th>Absent Days</th>
+                  <th>Total Records</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {stats.employeeStats.map((empStat) => (
+                  <tr key={empStat.employee_id}>
+                    <td>{empStat.employee_id}</td>
+                    <td>{empStat.full_name}</td>
+                    <td>{empStat.department}</td>
+                    <td>
+                      <span className="badge badge-present">{empStat.present}</span>
+                    </td>
+                    <td>
+                      <span className="badge badge-absent">{empStat.absent}</span>
+                    </td>
+                    <td>{empStat.total}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         )}
       </div>
     </div>
