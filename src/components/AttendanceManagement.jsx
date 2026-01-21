@@ -63,7 +63,12 @@ const AttendanceManagement = () => {
       });
       fetchData();
     } catch (err) {
-      setFormError(err.response?.data?.detail || `Failed to ${editingAttendance ? 'update' : 'mark'} attendance`);
+      const errorMessage = err.response?.data?.detail || 
+                          (Array.isArray(err.response?.data?.detail) 
+                            ? err.response.data.detail.map(d => d.msg || d).join(', ')
+                            : `Failed to ${editingAttendance ? 'update' : 'mark'} attendance`);
+      setFormError(errorMessage);
+      console.error('Attendance update error:', err);
     } finally {
       setSubmitting(false);
     }
